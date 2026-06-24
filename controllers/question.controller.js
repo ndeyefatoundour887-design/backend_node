@@ -1,15 +1,9 @@
 const Question = require("../models/question.model");
 
 // Ajouter une question
-exports.ajouterQuestion = async (req, res) => {
+const ajouterQuestion = async (req, res) => {
   try {
-    const { titre, description, auteur } = req.body;
-
-    const question = await Question.create({
-      titre,
-      description,
-      auteur,
-    });
+    const question = await Question.create(req.body);
 
     res.status(201).json(question);
   } catch (error) {
@@ -20,7 +14,7 @@ exports.ajouterQuestion = async (req, res) => {
 };
 
 // Récupérer toutes les questions
-exports.getQuestions = async (req, res) => {
+const getQuestions = async (req, res) => {
   try {
     const questions = await Question.find().sort({
       createdAt: -1,
