@@ -4,7 +4,6 @@ const Question = require("../models/question.model");
 const ajouterQuestion = async (req, res) => {
   try {
     const question = await Question.create(req.body);
-
     res.status(201).json(question);
   } catch (error) {
     res.status(500).json({
@@ -26,4 +25,9 @@ const getQuestions = async (req, res) => {
       message: error.message,
     });
   }
+};
+
+module.exports = {
+  ajouterQuestion,
+  getQuestions,
 };

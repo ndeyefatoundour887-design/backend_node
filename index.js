@@ -8,13 +8,12 @@ const questionRoute = require('./routes/question.route');
 dotenv.config()
 const app = express();
 connectBD();
-app.use(express.json());
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://front-node-lime.vercel.app"
-  ]
-}));
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+app.use(express.json());
 const PORT = process.env.PORT;
 app.listen( PORT , () => {
     console.log(`serveur démarré sur http://localhost:${PORT}` );
