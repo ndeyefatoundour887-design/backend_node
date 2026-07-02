@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
+const { creerQuestion, AfficherQuestions} = require('../controllers/question.controller');
+const authMiddleware = require('../middleware/user.middleware');
+
 const router = express.Router();
 
-const {
-  ajouterQuestion,
-  getQuestions,
-} = require("../controllers/question.controller");
+router.post('/', authMiddleware, creerQuestion);
+router.get("/", AfficherQuestions);
 
-router.post("/ajouter", ajouterQuestion);
-router.get("/", getQuestions);
+
 
 module.exports = router;
